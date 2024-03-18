@@ -59,8 +59,27 @@ module.exports = {
     // 27 isdeleted true is 204 değilse 404 yolla. errora da datanın deleteCountunun tersi, silindi ise false silinmedi ise true gidecek.
     res.status(isDeleted ? 204 : 404).send({
       error: !isDeleted,
-    //   burada ya kalan data ya da aynı data gider. 
-    // 28 şimdi routera department
+      //   burada ya kalan data ya da aynı data gider.
+      // 28 şimdi routera department
+      data,
+    });
+  },
+
+  personnels: async (req, res) => {
+    // departmana ait personelleri listelemek için ne yaptık. Personeli çağırıdk. Şuan üç parametre aldık.  ilk modeli yolladık. araya bir de filtreleme yolladık. 
+    const Personnel = require("../models/personnel.model");
+    const data = await res.getModelList(
+      Personnel,
+      { departmentId: req.params.id },
+      "departmentId"
+    );
+    res.status(200).send({
+      error: false,
+      detail: await res.getModelListDetails(
+        Personnel,
+        { departmentId: req.params.id },
+        "departmentId"
+      ),
       data,
     });
   },

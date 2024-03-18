@@ -67,3 +67,7 @@ app.listen(PORT, () => console.log("http://127.0.0.1:" + PORT));
 /* ------------------------------------------------------- */
 // Syncronization (must be in commentLine):
 // require('./src/helpers/sync')()
+
+
+// ! 47 her departmana ait olan leadi görüntüleme
+// departmana ait olan personneleri görüntüle yeni bir router yaz. department routera
